@@ -3,6 +3,16 @@ const router = express.Router();
 
 const Book = require('../models/books.models');
 
+/**
+ * @swagger
+ * /api:
+ *   get:
+ *     summary: Returns a greeting message
+ *     responses:
+ *       200:
+ *         description: A successful response
+ */
+
 // Get all books
 router.get('/', async (req, res) => {    
     try {

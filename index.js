@@ -6,11 +6,14 @@ const bookRouter = require('./routes/books.routes')
 const searchRouter = require('./routes/search.routes');
 const limiter = require('./middleware/ratelimiter');
 const logRequestDetails = require('./middleware/logDetails');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swagger.config');
 
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/books-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(logRequestDetails)
 app.use('/books', bookRouter);
 app.use('/search',searchRouter)
