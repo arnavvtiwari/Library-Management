@@ -3,15 +3,148 @@ const router = express.Router();
 
 const Book = require('../models/books.models');
 
+// To get schema of the books
 /**
  * @swagger
- * /api:
+ * components:
+ *   schemas:
+ *     Book:
+ *       type: object
+ *       properties:
+ *         title:
+ *           type: string
+ *           description: The title of the book
+ *         author:
+ *           type: string
+ *           description: The author of the book
+ *         genre:
+ *           type: string
+ *           description: The genre of the book
+ *         published:
+ *           type: integer
+ *           description: The year the book was published
+ *         ISBN:
+ *           type: string
+ *           description: The unique ISBN number of the book
+ *         stock:
+ *           type: integer
+ *           description: The number of copies available in stock
+ *       required:
+ *         - title
+ *         - author
+ *         - genre
+ *         - published
+ *         - ISBN
+ *         - stock
+ */
+
+// To get all the books
+/**
+ * @swagger
+ * /books:
  *   get:
- *     summary: Returns a greeting message
+ *     summary: Retrieve a list of books
  *     responses:
  *       200:
- *         description: A successful response
+ *         description: Successfully retrieved list of books
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Book'
  */
+
+// To get a specific book by ID
+/**
+ * @swagger
+ * /books/{bookId}:
+ *   get:
+ *     summary: Retrieve a book by its ISBN
+ *     parameters:
+ *       - in: path
+ *         name: bookId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ISBN of the book to retrieve
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the book
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Book'
+ *       404:
+ *         description: Book not found
+ *       500:
+ *         description: An error occurred while fetching the book
+ */
+
+// To add a new book
+/**
+ * @swagger
+ * /books:
+ *   post:
+ *     summary: Add a new book
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Book'
+ *     responses:
+ *       201:
+ *         description: Book created successfully
+ */
+
+// To edit a specific book by ID
+/**
+ * @swagger
+ * /books/{id}:
+ *   put:
+ *     summary: Update an existing book
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the book to update
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Book'
+ *     responses:
+ *       200:
+ *         description: Book updated successfully
+ *       404:
+ *         description: Book not found
+ */
+
+// To delete a book by ID
+/**
+ * @swagger
+ * /books/{id}:
+ *   delete:
+ *     summary: Delete a book
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the book to delete
+ *     responses:
+ *       200:
+ *         description: Book deleted successfully
+ *       404:
+ *         description: Book not found
+ */
+
+
 
 // Get all books
 router.get('/', async (req, res) => {    

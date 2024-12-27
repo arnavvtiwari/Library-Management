@@ -3,7 +3,7 @@ const Fuse = require('fuse.js');
 
 const search = async (req, res) => {
     try {
-        const { title } = req.body;
+        const { title } = req.query;
         // Fetch all books from the database
         const allBooks = await Book.find();
         const options = {
