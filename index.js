@@ -16,7 +16,7 @@ const swaggerOptions = {
     definition: {
       openapi: "3.0.0", // Version of OpenAPI
       info: {
-        title: "API Documentation", // Title 
+        title: "Library Management System", // Title 
         version: "1.0.0", // Version 
         description: "API documentation for Library Management System", // Description 
         contact:{
