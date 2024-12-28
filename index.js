@@ -49,3 +49,5 @@ app.use(limiter)
 app.listen(PORT, () => {
     console.log(`firstApp is running on port ${PORT}`);
 });
+
+module.exports = app;
