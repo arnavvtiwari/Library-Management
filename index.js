@@ -46,7 +46,15 @@ app.use('/search',searchRouter)
 app.use(limiter)
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the Library Management System');
+  res.send(
+    `Welcome to the Library Management System!<br>
+     <br>
+     - Use <strong>/api-docs</strong> to view the API documentation.<br>
+     - Use <strong>/books</strong> to perform CRUD operations.<br>
+     - Use <strong>/search</strong> to perform search operations.<br>`
+  );
+  
+
 });
 
 // Port Configuration
