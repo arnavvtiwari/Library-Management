@@ -45,6 +45,10 @@ app.use('/books', bookRouter);
 app.use('/search',searchRouter)
 app.use(limiter)
 
+app.get('/', (req, res) => {
+    res.send('Welcome to the Library Management System');
+});
+
 // Port Configuration
 app.listen(PORT, () => {
     console.log(`firstApp is running on port ${PORT}`);
