@@ -8,6 +8,7 @@ const limiter = require('./middleware/ratelimiter');
 const logRequestDetails = require('./middleware/logDetails');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 3000;
 
@@ -38,6 +39,7 @@ const swaggerOptions = {
 
   // Middlewares
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logRequestDetails)
